@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desafío - Inmobiliaria</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="assets/css/estilos.css" />
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+      <a class="navbar-brand" href="#">Inmobiliaria ADL</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <li class="nav-item">
+            <a class="nav-link" href="#">En venta</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Alquiler</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main class="container-fluid main-section">
+    <h1 class="text-white">Encuentra tu nueva propiedad</h1>
+  </main>
+  <div class="container mt-5">
+    <!-- Propiedades en venta -->
+    <section id="venta">
+      <h2>Propiedades en venta</h2>
+      <div class="row" id="propiedades_ventas"></div>
+      <div class="col-md-4 mb-4">
+        <div class="card"> </div>
+      </div>
+      <a href="ventas.index.html" class="btn btn-dark">Ver todas las propiedades en venta</a>
+    </section>
+    <hr />
+    <!-- Propiedades en alquiler -->
+    <section id="arriendo">
+      <h2>Propiedades en alquiler</h2>
+      <div class="row" id="propiedades_arriendos"></div>
+      <div class="col-md-4 mb-4">
+        <div class="card"></div>
+      </div>
+      <a href="arriendos.index.html" class="btn btn-dark">Ver todas las propiedades en alquiler</a>
+    </section>
+
+
+    <script src="assets/script.js"></script>
+    <script>
+      /* Propiedades Ventas */
+
+      let html1 = ""
+      for (let i = 0; i < 3; i++) {
+      //for (let propiedad of propiedades_ventas) {
+        html1 += `
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <img src="${propiedades_ventas[i].src}"
+                  class="card-img-top" alt="Imagen del departamento"/>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    ${propiedades_ventas[i].nombre}
+                  </h5>
+                  <p class="card-text">
+                    ${propiedades_ventas[i].descripcion}
+                  </p>
+                  <p> <i class="fas fa-map-marker-alt"></i>
+                    ${propiedades_ventas[i].ubicacion}
+                  </p>
+                  <p>
+                    <i class="fas fa-bath"></i>
+                    ${propiedades_ventas[i].habitaciones}
+                    <i class="fas fa-bath"></i>
+                     ${propiedades_ventas[i].baño}
+                  </p>
+                  <p><i class="fas fa-dollar-sign"></i>
+                    ${propiedades_ventas[i].costo}
+                    </p>`
+
+        if (propiedades_ventas[i].smoke) {
+          html1 += `
+          <p class="text-success"><i class="fa-solid fa-smoking"></i> Permitido Fumar
+              </p>`
+        }
+        else {
+          html1 += `
+          <p class="text-danger"><i class="fa-solid fa-ban-smoking"></i>
+            No se permite Fumar
+              </p>`
+
+        }
+
+        if (propiedades_ventas[i].pets) {
+          html1 += `
+          <p class="text-success"><i class="fa-solid fa-shield-dog"></i>
+            Permitido Animales
+              </p>`
+        }
+        else {
+          html1 += `
+          <p class="text-danger"><i class="fa-solid fa-eye-slash"></i>
+            No se permite Animales
+              </p>`
+
+        }
+
+
+        html1 += `
+                </div>
+              </div>
+            </div>`
+      }
+
+
+
+      const ele = document.getElementById("propiedades_ventas")
+      ele.innerHTML = html1
+
+      /* Propiedades Arriedos */
+      let html2 = ""
+      for (let i = 0; i < 3; i++) {
+      //for (let propiedad of propiedades_arriendos) {
+        html2 += `
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <img src="${propiedades_arriendos[i].src}"
+                  class="card-img-top" alt="Imagen del departamento"/>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    ${propiedades_arriendos[i].nombre}
+                  </h5>
+                  <p class="card-text">
+                    ${propiedades_arriendos[i].descripcion}
+                  </p>
+                  <p>
+                    ${propiedades_arriendos[i].ubicacion}
+                  </p>
+                  <p>
+                    <i class="fas fa-bath"></i>
+                     ${propiedades_arriendos[i].habitaciones}
+                  </p>
+                  <p><i class="fas fa-dollar-sign"></i>
+                  ${propiedades_arriendos[i].baño}
+                  </p>`
+
+        if (propiedades_arriendos[i].smoke) {
+          html2 += `<p class="text-success"><i class="fa-solid fa-smoking"></i>
+          Permitido Fumar
+              </p>`
+        }
+        else {
+          html2 += `<p class="text-danger"><i class="fa-solid fa-ban-smoking"></i>
+          No se permite Fumar
+              </p>`
+
+        }
+
+        if (propiedades_arriendos[i].pets) {
+          html2 += `<p class="text-success"><i class="fa-solid fa-shield-dog"></i>
+          Permitido Animales
+              </p>`
+        }
+        else {
+          html2 += `<p class="text-danger"><i class="fa-solid fa-eye-slash"></i>
+          No se permite Animales
+              </p>`
+
+        }
+
+
+        html2 += `
+
+                </div>
+              </div>
+            </div>`
+      }
+
+      const arriendo = document.getElementById("propiedades_arriendos")
+      arriendo.innerHTML = html2
+    </script>
+  </div>
+
+</body>
+
+</html>

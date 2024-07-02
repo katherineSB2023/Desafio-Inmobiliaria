@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propiedades en Arriendo</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/estilos.css" />
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <!-- Propiedades en arriendo -->
+        <section id="arriendo">
+            <h2>Propiedades en Arriendo</h2>
+            <br>
+            <br>
+            <div class="row" id="propiedades_arriendos"></div>
+            <div class="col-md-4 mb-4">
+                <div class="card"></div>
+            </div>
+        </section>
+
+
+        <script src="assets/script.js"></script>
+        <script>
+            /* Propiedades Arriedos */
+            let html2 = ""
+            for (let propiedad of propiedades_arriendos) {
+                html2 += `
+            <div class="col-md-4 mb-4">
+              <div class="card">
+                <img src="${propiedad.src}"
+                  class="card-img-top" alt="Imagen del departamento"/>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    ${propiedad.nombre}
+                  </h5>
+                  <p class="card-text">
+                    ${propiedad.descripcion}
+                  </p>
+                  <p>
+                    ${propiedad.ubicacion}
+                  </p>
+                  <p>
+                    <i class="fas fa-bath"></i>
+                     ${propiedad.habitaciones}
+                  </p>
+                  <p><i class="fas fa-dollar-sign"></i>
+                  ${propiedad.baño}
+                  </p>`
+
+                if (propiedad.smoke) {
+                    html2 += `<i class="fa-solid fa-smoking"></i><p class="text-success">
+          Permitido Fumar
+              </p>`
+                }
+                else {
+                    html2 += `<i class="fa-solid fa-ban-smoking"></i><p class="text-danger">
+          No se permite Fumar
+              </p>`
+
+                }
+
+                if (propiedad.pets) {
+                    html2 += `<i class="fa-solid fa-shield-dog"></i><p class="text-success">
+          Permitido Animales
+              </p>`
+                }
+                else {
+                    html2 += `<i class="fa-solid fa-eye-slash"></i><p class="text-danger">
+          No se permite Animales
+              </p>`
+
+                }
+
+
+                html2 += `
+
+                </div>
+              </div>
+            </div>`
+            }
+
+            const arriendo = document.getElementById("propiedades_arriendos")
+            arriendo.innerHTML = html2
+        </script>
+    </div>
+
+</body>
+
+</html>
